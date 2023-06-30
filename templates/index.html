@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static\css\main.css">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/main.css') }}">
+    <title>Landing Page </title>
+</head>
+<body>
+    <header>
+        <h1>Landing Page</h1>
+    </header>
+    <!-- <div>This is predicted policies <strong>{{final_df}}</strong></div> -->
+    <!-- <script src="app.js"></script> --> 
+    <!-- <script type="text/javascript" src="{{url_for('static',filename='app.js')}}"></script> -->
+    <!--This html file is only to list all the different charts that will
+        be put on the landing page.(NOPE NOT THIS ONE)-->
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/map.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <script src="https://code.highcharts.com/modules/sankey.js"></script>
+<script src="https://code.highcharts.com/modules/organization.js"></script>
+    
+    <p>Welcome user!
+        <br> Following are the vms owned by you.
+    </p>
+    <!---<div class="container">
+        <div class="box" >
+            <h1>VM44 <a href="Flask Proj\templates\VM44.html" ></a> </h1>
+            <p>Location: IOWA<br>Policy-5</p>
+        </div>
+        <script>
+            function openPage(pageUrl) {
+                window.location.href = pageUrl;
+            }
+        </script>
+
+        <div class="box">
+            <h1>Box 2</h1>
+            <p>This is the content of Box 2.</p>
+        </div>
+
+        <div class="box">
+            <h1>Box 3</h1>
+            <p>This is the content of Box 3.</p>
+        </div>
+    </div>--->
+
+    <!--VMS DATA-->
+    
+   <script>
+    data_vm1 = {
+ 'vmID': 'VM-44',
+ 'Read_Iops': 127,
+ 'Write_Iops': 93,
+ 'Read_Latency': 59,
+ 'Write_Latency': 35,
+ 'Memory': 6144,
+ 'CPU_Cores': 51,
+ 'Location': 'Iowa',
+ 'B&R_Location': 'Arkansas',
+ 'Cloud_%': 61,
+ 'OnPrem_%': 39,
+ 'Reliability_%': 93,
+ 'Cost_$': 56540,
+ 'Policy_Num': 5
+}
+ data_vm2 = {
+ 'vmID': 'VM-46',
+ 'Read_Iops': 120,
+ 'Write_Iops': 123,
+ 'Read_Latency': 56,
+ 'Write_Latency': 53,
+ 'Memory': 6144,
+ 'CPU_Cores': 40,
+ 'Location': 'Washington',
+ 'B&R_Location': 'New Hampshire',
+ 'Cloud_%': 62,
+ 'OnPrem_%': 38,
+ 'Reliability_%': 98,
+ 'Cost_$': 59439,
+ 'Policy_Num': 5
+}
+ data_vm3 = {
+ 'vmID': 'VM-59',
+ 'Read_Iops': 157,
+ 'Write_Iops': 151,
+ 'Read_Latency': 62,
+ 'Write_Latency': 24,
+ 'Memory': 7168,
+ 'CPU_Cores': 52,
+ 'Location': 'Utah',
+ 'B&R_Location': 'Colorado',
+ 'Cloud_%': 14,
+ 'OnPrem_%': 86,
+ 'Reliability_%': 94,
+ 'Cost_$': 63330,
+ 'Policy_Num': 6
+ }
+</script>
+
+    <section><!--Section made for VM1 -->
+        <!--Other details chart -->
+        <h1>
+            Details of 1st VM you own :
+            </h1>
+        <figure class="highcharts-figure11">
+            <div id="container11"></div>
+            </figure>
+        
+    <script>
+        Highcharts.chart('container11', {
+            chart: {
+                height: 600,
+                inverted: true
+            },
+        
+            title: {
+                text: 'VM 44'
+            },
+        
+        
+            series: [{
+                type: 'organization',
+                name: 'Highsoft',
+                keys: ['from', 'to'],
+                data: [
+                    ['vmID-VM44','Policy No. 5'],
+                    ['Policy No. 5', 'Memory'],
+                    ['Policy No. 5', 'CPU'],
+                    ['Policy No. 5', 'Location'],
+                    ['Policy No. 5', 'B&R Location'],
+                    ['Memory', 'On Cloud'],
+                    ['Memory', 'On Prem'],
+                    ['On Cloud', 'Reliability'],
+                    ['On Prem', 'Cost'],
+                    ['On Prem', 'Reliability'],
+                    ['On Cloud', 'Cost'],
+                ],
+                levels: [{
+                    level: 0,
+                    color: 'silver',
+                    dataLabels: {
+                        color: 'black'
+                    },
+                    height: 25
+                }, {
+                    level: 1,
+                    color: 'silver',
+                    dataLabels: {
+                        color: 'black'
+                    },
+                    height: 25
+                }, {
+                    level: 2,
+                    color: '#980104'
+                }, {
+                    level: 4,
+                    color: '#359154'
+                }],
+                nodes: [{
+                    id: 'vmID-VM44'
+                }, {
+                    id: 'Policy No. 5'
+                }, {
+                    id: 'Memory',
+                    title: 'Memory',
+                    name: '6144'
+                }, {
+                    id: 'CPU',
+                    title: 'CPU Cores',
+                    name: '51',
+                    color: '#007ad0'
+                    
+                }, {
+                    id: 'Location',
+                    title: 'Location',
+                    name: 'Iowa',
+                }, {
+                    id: 'B&R Location',
+                    title: 'B&R Location',
+                    name: 'Arkansas'
+                }, {
+                    id: 'On Cloud',
+                    title: '61%',
+                    name: 'On Cloud'
+                }, {
+                    id: 'On Prem',
+                    name: 'On Prem',
+                    title: '39%'
+                }, {
+                    id: 'Reliability',
+                    name: '93%',
+                    title : "Reliability"
+                }, {
+                    id: 'Cost',
+                    name: '$56540',
+                    title:'Cost',
+                    column: 5
+                } ],
+                colorByPoint: false,
+                color: '#007ad0',
+                dataLabels: {
+                    color: 'white'
+                },
+                borderColor: 'white',
+                nodeWidth: 65
+            }],
+            tooltip: {
+                outside: true
+            },
+            exporting: {
+                allowHTML: true,
+                sourceWidth: 800,
+                sourceHeight: 600
+            }
+        
+        });</script>
+        <!--PIe chart-->
+        
+    
+            <figure class="highcharts-vm1">
+            <div id="container4"></div>
+            </figure>
+            <script>
+       
+    
+    Highcharts.chart('container4', {
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false,
+            type: 'pie'
+        },
+        title: {
+            text: 'Data stored on cloud vs on prem for VM-44',
+            align: 'left'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        accessibility: {
+            point: {
+                valueSuffix: '%'
+            }
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                }
+            }
+        },
+        series: [{
+            name: 'Brands',
+            colorByPoint: true,
+            data: [{
+                    name: 'Data On Cloud',
+                    y: data_vm1['Cloud_%']
+                },
+                {
+                    name: 'Data On Prem',
+                    y: data_vm1['OnPrem_%']
+                }
+                
+                ]
+        }]
+    });
+    
+            </script>
+            
+    </section>
+    
+
+    <section>
+        <h1>Details of 2nd VM</h1>
+        <figure class="highcharts-figure11">
+            <div id="container12"></div>
+            </figure>
+
+        <figure class="highcharts-vm1">
+            <div id="container5"></div>
+            </figure>
+
+            
+            
+        <script>
+            Highcharts.chart('container12', {
+                chart: {
+                    height: 600,
+                    inverted: true
+                },
+            
+                title: {
+                    text: 'VM 46'
+                },
+            
+            
+                series: [{
+                    type: 'organization',
+                    name: 'Highsoft',
+                    keys: ['from', 'to'],
+                    data: [
+                        ['vmID-VM44','Policy No. 5'],
+                        ['Policy No. 5', 'Memory'],
+                        ['Policy No. 5', 'CPU'],
+                        ['Policy No. 5', 'Location'],
+                        ['Policy No. 5', 'B&R Location'],
+                        ['Memory', 'On Cloud'],
+                        ['Memory', 'On Prem'],
+                        ['On Cloud', 'Reliability'],
+                        ['On Prem', 'Cost'],
+                        ['On Prem', 'Reliability'],
+                        ['On Cloud', 'Cost'],
+                    ],
+                    levels: [{
+                        level: 0,
+                        color: 'silver',
+                        dataLabels: {
+                            color: 'black'
+                        },
+                        height: 25
+                    }, {
+                        level: 1,
+                        color: 'silver',
+                        dataLabels: {
+                            color: 'black'
+                        },
+                        height: 25
+                    }, {
+                        level: 2,
+                        color: '#980104'
+                    }, {
+                        level: 4,
+                        color: '#359154'
+                    }],
+                    nodes: [{
+                        id: 'vmID-VM44'
+                    }, {
+                        id: 'Policy No. 5'
+                    }, {
+                        id: 'Memory',
+                        title: 'Memory',
+                        name: '6144'
+                    }, {
+                        id: 'CPU',
+                        title: 'CPU Cores',
+                        name: '40',
+                        color: '#007ad0'
+                        
+                    }, {
+                        id: 'Location',
+                        title: 'Location',
+                        name: 'Washington',
+                    }, {
+                        id: 'B&R Location',
+                        title: 'B&R Location',
+                        name: 'New Hampshire'
+                    }, {
+                        id: 'On Cloud',
+                        title: '62%',
+                        name: 'On Cloud'
+                    }, {
+                        id: 'On Prem',
+                        name: 'On Prem',
+                        title: '38%'
+                    }, {
+                        id: 'Reliability',
+                        name: '98%',
+                        title : "Reliability"
+                    }, {
+                        id: 'Cost',
+                        name: '$56540',
+                        title:'Cost',
+                        column: 5
+                    } ],
+                    colorByPoint: false,
+                    color: '#007ad0',
+                    dataLabels: {
+                        color: 'white'
+                    },
+                    borderColor: 'white',
+                    nodeWidth: 65
+                }],
+                tooltip: {
+                    outside: true
+                },
+                exporting: {
+                    allowHTML: true,
+                    sourceWidth: 800,
+                    sourceHeight: 600
+                }
+            
+            });</script>
+        <script>
+        
+
+Highcharts.chart('container5', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Data stored on cloud vs on prem for VM46',
+        align: 'left'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Brands',
+        colorByPoint: true,
+        data: [{
+                name: 'Data On Cloud',
+                y: data_vm2['Cloud_%']
+            },
+            {
+                name: 'Data On Prem',
+                y: data_vm3['OnPrem_%']
+            }
+            
+            ]
+    }]
+});
+        </script>
+    </section>
+
+    
+    <section><!--Section to desc vm3 -->
+        <h1>Details of 3rd VM</h1>
+        <figure class="highcharts-figure11">
+            <div id="container13"></div>
+            </figure>
+
+        <figure class="highcharts-vm1">
+            <div id="container6"></div>
+            </figure>
+            
+                
+                
+            <script>
+                Highcharts.chart('container13', {
+                    chart: {
+                        height: 600,
+                        inverted: true
+                    },
+                
+                    title: {
+                        text: 'VM 59'
+                    },
+                
+                
+                    series: [{
+                        type: 'organization',
+                        name: 'Highsoft',
+                        keys: ['from', 'to'],
+                        data: [
+                            ['vmID-VM59','Policy No. 6'],
+                            ['Policy No. 6', 'Memory'],
+                            ['Policy No. 6', 'CPU'],
+                            ['Policy No. 6', 'Location'],
+                            ['Policy No. 6', 'B&R Location'],
+                            ['Memory', 'On Cloud'],
+                            ['Memory', 'On Prem'],
+                            ['On Cloud', 'Reliability'],
+                            ['On Prem', 'Cost'],
+                            ['On Prem', 'Reliability'],
+                            ['On Cloud', 'Cost'],
+                        ],
+                        levels: [{
+                            level: 0,
+                            color: 'silver',
+                            dataLabels: {
+                                color: 'black'
+                            },
+                            height: 25
+                        }, {
+                            level: 1,
+                            color: 'silver',
+                            dataLabels: {
+                                color: 'black'
+                            },
+                            height: 25
+                        }, {
+                            level: 2,
+                            color: '#980104'
+                        }, {
+                            level: 4,
+                            color: '#359154'
+                        }],
+                        nodes: [{
+                            id: 'vmID-VM59'
+                        }, {
+                            id: 'Policy No. 5'
+                        }, {
+                            id: 'Memory',
+                            title: 'Memory',
+                            name: '7168'
+                        }, {
+                            id: 'CPU',
+                            title: 'CPU Cores',
+                            name: '52',
+                            color: '#007ad0'
+                            
+                        }, {
+                            id: 'Location',
+                            title: 'Location',
+                            name: 'Utah',
+                        }, {
+                            id: 'B&R Location',
+                            title: 'B&R Location',
+                            name: 'Colorado'
+                        }, {
+                            id: 'On Cloud',
+                            title: '14%',
+                            name: 'On Cloud'
+                        }, {
+                            id: 'On Prem',
+                            name: 'On Prem',
+                            title: '86%'
+                        }, {
+                            id: 'Reliability',
+                            name: '94%',
+                            title : "Reliability"
+                        }, {
+                            id: 'Cost',
+                            name: '$63330',
+                            title:'Cost',
+                            column: 5
+                        } ],
+                        colorByPoint: false,
+                        color: '#007ad0',
+                        dataLabels: {
+                            color: 'white'
+                        },
+                        borderColor: 'white',
+                        nodeWidth: 65
+                    }],
+                    tooltip: {
+                        outside: true
+                    },
+                    exporting: {
+                        allowHTML: true,
+                        sourceWidth: 800,
+                        sourceHeight: 600
+                    }
+                
+                });</script>
+            
+
+
+        <script>
+            
+
+Highcharts.chart('container6', {
+    chart: {
+        plotBackgroundColor: null,
+        plotBorderWidth: null,
+        plotShadow: false,
+        type: 'pie'
+    },
+    title: {
+        text: 'Data stored on cloud vs on prem for VM59',
+        align: 'left'
+    },
+    tooltip: {
+        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+    },
+    accessibility: {
+        point: {
+            valueSuffix: '%'
+        }
+    },
+    plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+    series: [{
+        name: 'Storage',
+        colorByPoint: true,
+        data: [{
+                name: 'Data On Cloud',
+                y: data_vm3['Cloud_%']
+            },
+            {
+                name: 'Data On Prem',
+                y: data_vm3['OnPrem_%']
+            }
+            
+            ]
+    }]
+});
+        </script>
+    </section>
+    
+    
+    <section>
+        <h1>Comparision of vms owned</h1>
+    <figure class="highcharts-COMP">
+        <div id="container7"></div>
+        </figure>
+    <script>
+        
+        Highcharts.chart('container7', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Your VMs'
+    },
+    subtitle: {
+        text: 'Source: WorldClimate.com'
+    },
+    xAxis: {
+        categories: [
+            
+    				'Read_Iops',
+            'Write_Iops',
+            'Read_Latency',
+            'Write_Latency',
+            //'Memory',
+            'CPU_Cores',
+            //'Location': 'Utah',
+            //'B&R_Location': 'Colorado',
+            'Cloud_%',
+            'OnPrem_%',
+            'Reliability_%',
+            //'Cost_$',
+            //'Policy_Num'
+        ],
+        crosshair: true
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'MEASURE'
+        }
+    },
+    tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+            '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+    },
+    plotOptions: {
+        column: {
+            pointPadding: 0.1,
+            borderWidth: 0
+        }
+    },
+    series: [{
+        name: 'VM-44',
+        data: [ 127,93,59,35,51,61,39,93]
+
+    }, {
+        name: 'VM-46',
+        data: [120, 123, 56, 53,  40,  62, 38, 98]
+    }, {
+        name: 'VM-59',
+        data:[  157,151,62,52,24, 14, 86, 94]
+
+    }]
+    
+});
+    </script>
+
+    </section>
+
+
+    <figure class="highcharts-figure-1">
+      <div id="container1"></div>
+    </figure>
+
+    <figure class="highcharts-figure-2">
+        <div id="container2"></div>
+    </figure>
+    
+    <script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+    
+    <section>
+        <figure class="highcharts-figure15">
+            
+        <div id="container"></div>
+        </figure>
+
+            <script src="https://code.highcharts.com/maps/modules/offline-exporting.js"></script>
+        <script src="https://code.highcharts.com/maps/modules/pattern-fill.js"></script>
+        
+        <script>
+(async () => {
+
+const topology = await fetch(
+    'https://code.highcharts.com/mapdata/countries/us/us-all.topo.json'
+).then(response => response.json());
+
+// We use a darker border for some states
+var darkBorderColor = '#ccc';
+
+
+var data = [['Iowa', 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/aa/Flag_of_Iowa.svg/640px-Flag_of_Iowa.svg.png'],
+['Washington', 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/54/Flag_of_Washington.svg/640px-Flag_of_Washington.svg.png'],
+['Utah', 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/f6/Flag_of_Utah.svg/320px-Flag_of_Utah.svg.png']
+];
+
+// Create the chart
+Highcharts.mapChart('container', {
+    chart: {
+        map: topology
+    },
+
+    title: {
+        text: 'Your VM locations'
+    },
+
+
+    accessibility: {
+        description: 'Map of US states, where each state is filled with an illustration of its state flag.'
+    },
+
+    // Add zoom/pan
+    mapNavigation: {
+        enabled: true,
+        enableDoubleClickZoomTo: true,
+        buttonOptions: {
+            verticalAlign: 'bottom'
+        }
+    },
+
+    // Limit zoom
+    xAxis: {
+        minRange: 3500
+    },
+
+    // We do not want a legend
+    legend: {
+        enabled: false
+    },
+
+    // Make tooltip show full image
+    tooltip: {
+        useHTML: true,
+        borderColor: '#aaa',
+        headerFormat: '<b>{point.point.name}</b><br>',
+        pointFormat: '<img style="width: 150px; height: 100px;" src=\'{point.options.color.pattern.image}\'>'
+    },
+
+    // Define the series
+    series: [{
+        name: 'State flags',
+        accessibility: {
+            exposeAsGroupOnly: true
+        },
+        keys: [
+            'name', 'color.pattern.image', 'borderWidth', 'color.pattern.x', 'color.pattern.y', 'borderColor'
+        ],
+        joinBy: 'name',
+        data: data,
+        borderColor: '#fff',
+        color: {
+            pattern: {
+                // This is inherited by the individual pattern definitions for
+                // each point. As long as a width/height for the pattern is not
+                // defined, Highcharts will automatically fill the bounding box
+                // while preserving the aspect ratio defined here. Without an
+                // aspect ratio defined, Highcharts will simply fill the
+                // bounding box with the image, stretching it to fit.
+                aspectRatio: 3 / 2
+            }
+        },
+        states: {
+            hover: {
+                borderColor: '#b44',
+                borderWidth: 2
+            }
+        }
+    }, {
+        /* Separator lines */
+        type: 'mapline',
+        nullColor: '#aaa',
+        accessibility: {
+            enabled: false
+        }
+    }]
+});
+
+})();
+
+        </script>
+    </section>
+        
+    <footer>
+    &copy; Page Ends
+  </footer>
+
+</body>
+</html>
